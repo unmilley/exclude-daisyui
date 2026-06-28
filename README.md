@@ -1,10 +1,10 @@
 # exclude-daisyui
 
+CLI tool for analyzing a project and generating a list of DaisyUI classes that can be excluded from the DaisyUI plugin integration in Tailwind CSS.
+
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
-
-`exclude-daisyui` is a CLI tool for analyzing a project and generating a list of DaisyUI classes that can be excluded from the DaisyUI plugin integration in Tailwind CSS.
 
 ## What is it for
 
