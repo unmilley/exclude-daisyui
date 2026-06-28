@@ -32,42 +32,35 @@ Options:
   -v, --version        Display the version
 
 `);
-  process.exit(1);
-}
-
-if (args.version) {
+  process.exitCode = 1;
+} else if (args.version) {
   console.log(
     `DaisyUI class from: ${cLink(DAISYUI_VERSION, `https://github.com/saadeghi/daisyui/tree/v${DAISYUI_VERSION}`)}`,
   );
   console.log(`exclude-daisyui:    ${cLink(pkg.version, pkg.repository.url)}`);
-
-  process.exit(1);
-}
-
-if (args["list-class"]) {
+  process.exitCode = 1;
+} else if (args["list-class"]) {
   console.log("DaisyUI classes:");
   console.log(ALLOWED_CLASSES.join(", "));
-  process.exit(1);
+  process.exitCode = 1;
+} else {
+  (async () => {
+    const projectRoot = positionals[0] || process.cwd();
+    const mode = args.include ? "include" : "exclude";
+    try {
+      const missingClasses = await findClassesInProject(projectRoot, mode);
+      const list =
+        missingClasses.length > 0 ? missingClasses.join(", ") : "none";
+      console.log(chalk.gray('@plugin "daisyui" {'));
+      console.log(`  ${mode}: ${list};`);
+      console.log(chalk.gray("}"));
+      process.exitCode = 0;
+    } catch (error) {
+      console.error(
+        "The project could not be scanned:",
+        error instanceof Error ? error.message : error,
+      );
+      process.exitCode = 1;
+    }
+  })();
 }
-
-(async () => {
-  const projectRoot = positionals[0] || process.cwd();
-
-  const mode = args.include ? "include" : "exclude";
-
-  try {
-    const missingClasses = await findClassesInProject(projectRoot, mode);
-    const list = missingClasses.length > 0 ? missingClasses.join(", ") : "none";
-
-    console.log(chalk.gray('@plugin "daisyui" {'));
-    console.log(`  ${mode}: ${list};`);
-    console.log(chalk.gray("}"));
-    process.exit(0);
-  } catch (error) {
-    console.error(
-      "Не удалось просканировать проект:",
-      error instanceof Error ? error.message : error,
-    );
-    process.exit(1);
-  }
-})();

@@ -22,7 +22,7 @@ describe("exclude-daisyui CLI", () => {
 
   it("prints full DaisyUI class list", () => {
     const result = runCli(["-l"]);
-    console.log("result.status: ", result.status);
+
     expect(result.status).toBe(1);
     expect(result.stdout).toContain("DaisyUI classes:");
     expect(result.stdout).toContain("alert");
@@ -31,7 +31,11 @@ describe("exclude-daisyui CLI", () => {
 
   it("returns only used classes with --include", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "exclude-daisyui-"));
-    writeFileSync(join(tempDir, "App.vue"), '<div class="alert badge"></div>', "utf8");
+    writeFileSync(
+      join(tempDir, "App.vue"),
+      '<div class="alert badge"></div>',
+      "utf8",
+    );
 
     const result = runCli(["-i", tempDir]);
     rmSync(tempDir, { recursive: true, force: true });
@@ -45,7 +49,11 @@ describe("exclude-daisyui CLI", () => {
 
   it("returns unused classes with default exclude mode", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "exclude-daisyui-"));
-    writeFileSync(join(tempDir, "index.html"), '<button class="alert"></button>', "utf8");
+    writeFileSync(
+      join(tempDir, "index.html"),
+      '<button class="alert"></button>',
+      "utf8",
+    );
 
     const result = runCli([tempDir]);
     rmSync(tempDir, { recursive: true, force: true });
