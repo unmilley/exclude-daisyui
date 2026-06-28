@@ -29,11 +29,7 @@ describe("exclude-daisyui CLI", () => {
 
   it("returns only used classes with --include", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "exclude-daisyui-"));
-    writeFileSync(
-      join(tempDir, "App.vue"),
-      '<div class="alert badge"></div>',
-      "utf8",
-    );
+    writeFileSync(join(tempDir, "App.vue"), '<div class="alert badge"></div>', "utf8");
 
     const result = runCli(["-i", tempDir]);
     rmSync(tempDir, { recursive: true, force: true });
@@ -46,11 +42,7 @@ describe("exclude-daisyui CLI", () => {
 
   it("returns unused classes with default exclude mode", () => {
     const tempDir = mkdtempSync(join(tmpdir(), "exclude-daisyui-"));
-    writeFileSync(
-      join(tempDir, "index.html"),
-      '<button class="alert"></button>',
-      "utf8",
-    );
+    writeFileSync(join(tempDir, "index.html"), '<button class="alert"></button>', "utf8");
 
     const result = runCli([tempDir]);
     rmSync(tempDir, { recursive: true, force: true });

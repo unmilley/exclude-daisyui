@@ -40,9 +40,7 @@ Options:
     console.log(
       `DaisyUI class from: ${cLink(DAISYUI_VERSION, `https://github.com/saadeghi/daisyui/tree/v${DAISYUI_VERSION}`)}`,
     );
-    console.log(
-      `exclude-daisyui:    ${cLink(pkg.version, pkg.repository.url)}`,
-    );
+    console.log(`exclude-daisyui:    ${cLink(pkg.version, pkg.repository.url)}`);
     process.exitCode = 0;
     return;
   }
