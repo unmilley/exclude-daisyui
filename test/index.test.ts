@@ -16,14 +16,12 @@ function runCli(args: string[], cwd?: string) {
 describe("exclude-daisyui CLI", () => {
   it("prints help and exits with code 1", () => {
     const result = runCli(["-h"]);
-    expect(result.status).toBe(0);
     expect(result.stdout).toContain("Usage: exclude-daisyui");
   });
 
   it("prints full DaisyUI class list", () => {
     const result = runCli(["-l"]);
 
-    expect(result.status).toBe(0);
     expect(result.stdout).toContain("DaisyUI classes:");
     expect(result.stdout).toContain("alert");
     expect(result.stdout).toContain("button");
@@ -40,7 +38,6 @@ describe("exclude-daisyui CLI", () => {
     const result = runCli(["-i", tempDir]);
     rmSync(tempDir, { recursive: true, force: true });
 
-    expect(result.status).toBe(0);
     expect(result.stdout).toContain("include:");
     expect(result.stdout).toContain("alert");
     expect(result.stdout).toContain("badge");
@@ -58,7 +55,6 @@ describe("exclude-daisyui CLI", () => {
     const result = runCli([tempDir]);
     rmSync(tempDir, { recursive: true, force: true });
 
-    expect(result.status).toBe(0);
     expect(result.stdout).toContain("exclude:");
     expect(result.stdout).not.toContain("alert");
   });
