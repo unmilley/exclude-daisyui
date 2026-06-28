@@ -1,4 +1,20 @@
 
+## v0.0.4
+
+[compare changes](https://github.com/unmilley/exclude-daisyui/compare/v0.0.2...v0.0.4)
+
+### 🩹 Fixes
+
+- Update README for clarity and version bump to 0.0.3 ([1f58699](https://github.com/unmilley/exclude-daisyui/commit/1f58699))
+
+### 🏡 Chore
+
+- **release:** V0.0.2 ([36a970a](https://github.com/unmilley/exclude-daisyui/commit/36a970a))
+
+### ❤️ Contributors
+
+- Unmilley <1337@milley.uno>
+
 ## v0.0.2
 
 
